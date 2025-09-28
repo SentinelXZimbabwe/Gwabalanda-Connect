@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
     :root{--brand:#0b6b6b;--accent:#0f9d9d;--muted:#6b7280;--bg:#f7fafc}
     *{box-sizing:border-box}
@@ -33,6 +34,7 @@
     label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
     footer{margin-top:28px;padding:18px 0;text-align:center;color:var(--muted);font-size:13px}
     nav a{color:var(--brand);text-decoration:none;margin-left:12px}
+    #map{height:300px;border-radius:12px;margin-top:12px}
     @media (max-width:960px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.brand img{height:48px}.price{font-size:28px}}
   </style>
 </head>
@@ -57,7 +59,6 @@
           <div class="card">
             <h1>Affordable uncapped Wi‑Fi for every home in Gwabalanda</h1>
             <p class="lead">Uncapped internet — simple pricing. $20/month with a one‑time $49 installation fee that includes a router. Fast, reliable, community first.</p>
-
             <div class="features">
               <div class="feature">
                 <i class="fa-solid fa-wifi"></i>
@@ -66,7 +67,6 @@
                   <div class="small">No data limits for browsing, streaming or work.</div>
                 </div>
               </div>
-
               <div class="feature">
                 <i class="fa-solid fa-house"></i>
                 <div>
@@ -74,7 +74,6 @@
                   <div class="small">Plug-and-play router installed during setup.</div>
                 </div>
               </div>
-
               <div class="feature">
                 <i class="fa-solid fa-tools"></i>
                 <div>
@@ -82,7 +81,6 @@
                   <div class="small">Installation & maintenance by Gwabalanda technicians.</div>
                 </div>
               </div>
-
               <div class="feature">
                 <i class="fa-solid fa-graduation-cap"></i>
                 <div>
@@ -107,12 +105,8 @@
 
           <div style="margin-top:18px">
             <div class="card">
-              <h3 style="margin:0 0 8px 0">How it works</h3>
-              <ol style="margin:0;padding-left:18px;color:var(--muted)">
-                <li>Sign up using the form or contact email.</li>
-                <li>We schedule installation and mount a router.</li>
-                <li>Enjoy uncapped internet with local support.</li>
-              </ol>
+              <h3 style="margin:0 0 8px 0">Network Coverage Map</h3>
+              <div id="map"></div>
             </div>
           </div>
         </div>
@@ -125,17 +119,14 @@
                 <label for="name">Full name</label>
                 <input id="name" name="name" required placeholder="Jane Doe">
               </div>
-
               <div style="margin-bottom:12px">
                 <label for="phone">Phone (WhatsApp)</label>
                 <input id="phone" name="phone" required placeholder="+2637...">
               </div>
-
               <div style="margin-bottom:12px">
                 <label for="address">Street address / landmark</label>
                 <input id="address" name="address" required placeholder="House 12, Gwabalanda Main Rd">
               </div>
-
               <div style="margin-bottom:12px">
                 <label for="package">Package</label>
                 <select id="package" name="package">
@@ -143,71 +134,15 @@
                   <option value="premium">Premium — $30/month (higher priority & speed)</option>
                 </select>
               </div>
-
               <input type="hidden" id="ref" value="gwabalanda-landing-1">
-
               <div style="display:flex;gap:8px">
                 <button type="submit" class="btn">Request install</button>
                 <button type="button" id="whatsappBtn" class="btn-ghost">Contact via WhatsApp</button>
               </div>
-
               <p class="small" style="margin-top:12px">By submitting you agree to be contacted about installation scheduling. Email: <a href="mailto:sentinelxzw@gmail.com">sentinelxzw@gmail.com</a></p>
             </form>
           </div>
-
-          <div style="margin-top:12px;">
-            <div class="card">
-              <h4 style="margin:0 0 8px 0">Coverage</h4>
-              <div class="small">Phase 1 pilot: central Gwabalanda. Map & installation dates will be shared with registered residents.</div>
-              <div style="height:160px;display:flex;align-items:center;justify-content:center;border-radius:8px;margin-top:12px;background:#f3fafb;color:var(--muted);font-weight:600">[Coverage map placeholder]</div>
-            </div>
-          </div>
         </aside>
-      </section>
-
-
-      <section id="learn" style="margin-top:22px">
-        <div class="card">
-          <h2 style="margin-top:0">Why Gwabalanda Connect?</h2>
-          <p class="small">We design networks for communities first. Our focus is long‑term reliability, local jobs, and affordable pricing. Sentinel‑X provides the network management backend so the service can scale to other suburbs in Zimbabwe.</p>
-
-          <h3>Pilot targets</h3>
-          <ul class="small">
-            <li>Install 10 poles and connect 100 homes in Phase 1.</li>
-            <li>Train local technicians for support & maintenance.</li>
-            <li>Keep pricing stable and transparent.</li>
-          </ul>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-          <div class="card">
-            <h4 style="margin-top:0">For households</h4>
-            <p class="small">Uncapped internet for study, entertainment, and work. No surprise bills.</p>
-          </div>
-
-          <div class="card">
-            <h4 style="margin-top:0">For SMEs & shops</h4>
-            <p class="small">Affordable connectivity to run payments, inventory systems and online presence.</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="faq" style="margin-top:22px">
-        <div class="card">
-          <h3 style="margin-top:0">Frequently asked questions</h3>
-          <details style="margin-bottom:8px"><summary>Is the $20 really uncapped?</summary><div class="small" style="margin-top:8px">Yes — basic fair usage policy applies to prevent abuse. Contact us to learn about business packages.</div></details>
-          <details style="margin-bottom:8px"><summary>What does the $49 install include?</summary><div class="small" style="margin-top:8px">Onsite visit, router, mounting, and basic configuration.</div></details>
-          <details style="margin-bottom:8px"><summary>How soon can I be connected?</summary><div class="small" style="margin-top:8px">Pilot install dates are communicated to registered residents. We'll prioritise based on sign‑ups and location.</div></details>
-        </div>
-      </section>
-
-      <section id="signup" style="margin-top:22px">
-        <div class="card">
-          <h3 style="margin-top:0">Contact & support</h3>
-          <p class="small">Email us: <a href="mailto:sentinelxzw@gmail.com">sentinelxzw@gmail.com</a></p>
-          <p class="small">WhatsApp: <a href="https://wa.me/263777932721" target="_blank">+263777932721</a></p>
-          <img src="logos/sentx-logo.png" alt="Sentinel-X company logo" style="height:40px;margin-top:12px">
-        </div>
       </section>
     </main>
 
@@ -216,8 +151,52 @@
     </footer>
   </div>
 
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
-    // Simple form handling: opens mailto with form contents (fallback if you don't have a backend yet)
+    // Initialize map
+    var map = L.map('map').setView([-20.12247, 28.50731], 16); // Center on Zone A/B area
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Hardcoded nodes
+    var nodes = [
+      {name: "Zone B-Node 1", latitude: -20.12210, longitude: 28.50863, coverage: 100},
+      {name: "Zone B-Node 3", latitude: -20.12320, longitude: 28.50731, coverage: 100},
+      {name: "Zone A-Node 1", latitude: -20.12247, longitude: 28.50624, coverage: 200},
+      {name: "Zone C-Node 1", latitude: -20.12155, longitude: 28.50980, coverage: 100},
+      {name: "Zone C-Node 2", latitude: -20.12252, longitude: 28.50927, coverage: 100},
+      {name: "Zone D-Node 1", latitude: -20.11931, longitude: 28.50959, coverage: 200},
+      {name: "Zone F-Node 1", latitude: -20.12120, longitude: 28.50741, coverage: 200}
+    ];
+
+    var bounds = [];
+    nodes.forEach(node => {
+      // Coverage circle
+      L.circle([node.latitude, node.longitude], {
+        color: '#0f9d9d',
+        fillColor: '#0f9d9d',
+        fillOpacity: 0.2,
+        radius: node.coverage
+      }).addTo(map);
+
+      // Marker with popup
+      L.marker([node.latitude, node.longitude])
+        .addTo(map)
+        .bindPopup(`<strong>${node.name}</strong><br>
+                    Coverage: ${node.coverage} m<br>
+                    Lat: ${node.latitude}<br>
+                    Lon: ${node.longitude}`);
+
+      bounds.push([node.latitude, node.longitude]);
+    });
+
+    // Adjust map to fit all nodes
+    if(bounds.length) {
+      map.fitBounds(bounds, {padding: [50, 50]});
+    }
+
+    // Form handling
     const form = document.getElementById('signupForm');
     form.addEventListener('submit', function(e){
       e.preventDefault();
@@ -233,7 +212,7 @@
       window.location.href = mailto;
     });
 
-    // WhatsApp quick contact (opens WhatsApp web/mobile)
+    // WhatsApp button
     document.getElementById('whatsappBtn').addEventListener('click', function(){
       const number = '263777932721';
       const text = encodeURIComponent('Hello — I want to sign up for Gwabalanda Connect. Please help.');
