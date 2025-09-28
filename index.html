@@ -17,24 +17,36 @@
     .container{max-width:1100px;margin:0 auto;padding:28px}
     header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
     .brand{display:flex;gap:12px;align-items:center}
-    .brand img{height:56px;width:auto;border-radius:8px}
-    h1{font-size:28px;margin:0}
-    p.lead{color:var(--muted);margin:6px 0 0}
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:18px}
-    .card{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(15,23,42,0.06)}
+    .brand img{height:56px;width:auto;border-radius:8px;transition:transform 0.3s;}
+    .brand img:hover{transform:scale(1.05);}
+    h1{font-size:28px;margin:0;opacity:0;animation:fadeIn 1s forwards}
+    h2,h3{opacity:0;animation:fadeIn 1s forwards;animation-delay:0.3s}
+    p.lead, .feature div, .faq p{opacity:0;animation:fadeIn 1s forwards;animation-delay:0.5s}
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start;margin-top:18px}
+    .card{background:white;border-radius:12px;padding:18px;box-shadow:0 6px 20px rgba(15,23,42,0.06);transition:transform 0.3s;}
+    .card:hover{transform:translateY(-3px);}
     .features{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px}
-    .feature{display:flex;gap:12px;align-items:flex-start}
+    .feature{display:flex;gap:12px;align-items:flex-start;transition:all 0.3s;}
     .feature i{font-size:20px;color:var(--accent)}
+    .feature:hover{transform:translateX(5px)}
     .price{font-size:34px;font-weight:800;color:var(--brand)}
     .small{font-size:13px;color:var(--muted)}
-    .btn{display:inline-block;background:var(--brand);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn{display:inline-block;background:var(--brand);color:white;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;transition:all 0.3s;}
+    .btn:hover{background:#0f9d9d;}
     .btn-ghost{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--brand)}
+    .btn-ghost:hover{background:#0f9d9d;color:white;}
     form .row{display:flex;gap:8px}
-    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6edf3;font-size:14px}
+    input,select,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6edf3;font-size:14px;transition:border 0.3s;}
+    input:focus, select:focus, textarea:focus{border-color:var(--accent);outline:none;}
     label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
     footer{margin-top:28px;padding:18px 0;text-align:center;color:var(--muted);font-size:13px}
     nav a{color:var(--brand);text-decoration:none;margin-left:12px}
     #map{height:300px;border-radius:12px;margin-top:12px}
+    .section{margin-top:28px;animation:fadeIn 1s forwards;opacity:0;}
+    .faq{margin-top:12px}
+    .faq-item{margin-bottom:12px}
+    .emoji{font-size:18px;vertical-align:middle;margin-right:4px;}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
     @media (max-width:960px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.brand img{height:48px}.price{font-size:28px}}
   </style>
 </head>
@@ -103,17 +115,60 @@
             </div>
           </div>
 
+          <!-- Network Map -->
           <div style="margin-top:18px">
             <div class="card">
-              <h3 style="margin:0 0 8px 0">Network Coverage Map</h3>
+              <h3 style="margin:0 0 8px 0">Network Coverage Map 🌐</h3>
               <div id="map"></div>
+            </div>
+          </div>
+
+          <!-- Why Gwabalanda Connect -->
+          <div class="section card">
+            <h2>Why Gwabalanda Connect? 🤝</h2>
+            <p>We design networks for communities first. Our focus is long‑term reliability, local jobs, and affordable pricing. Sentinel‑X provides the network management backend so the service can scale to other suburbs in Zimbabwe.</p>
+          </div>
+
+          <!-- Pilot Targets -->
+          <div class="section card">
+            <h2>Pilot Targets 🚀</h2>
+            <ul>
+              <li>Install 10 poles and connect 100 homes in Phase 1.</li>
+              <li>Train local technicians for support & maintenance.</li>
+              <li>Keep pricing stable and transparent.</li>
+            </ul>
+          </div>
+
+          <!-- Benefits -->
+          <div class="section card">
+            <h2>For Households 🏠</h2>
+            <p>Uncapped internet for study, entertainment, and work. No surprise bills.</p>
+            <h2>For SMEs & Shops 🏪</h2>
+            <p>Affordable connectivity to run payments, inventory systems and online presence.</p>
+          </div>
+
+          <!-- FAQ -->
+          <div class="section card faq">
+            <h2>Frequently Asked Questions ❓</h2>
+            <div class="faq-item">
+              <strong>Is the $20 really uncapped? 💸</strong>
+              <p>Yes! No data caps for browsing, streaming, or work.</p>
+            </div>
+            <div class="faq-item">
+              <strong>What does the $49 install include? 🛠️</strong>
+              <p>One-time installation fee includes a plug-and-play router and setup.</p>
+            </div>
+            <div class="faq-item">
+              <strong>How soon can I be connected? ⏱️</strong>
+              <p>We schedule installations as soon as possible. Most households are connected within a few days of request.</p>
             </div>
           </div>
         </div>
 
+        <!-- Sign Up Form -->
         <aside>
           <div class="card">
-            <h3 style="margin-top:0">Quick sign up</h3>
+            <h3 style="margin-top:0">Quick sign up 📝</h3>
             <form id="signupForm">
               <div style="margin-bottom:12px">
                 <label for="name">Full name</label>
@@ -154,7 +209,7 @@
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
     // Initialize map
-    var map = L.map('map').setView([-20.12247, 28.50731], 16); // Center on Zone A/B area
+    var map = L.map('map').setView([-20.12247, 28.50731], 16); 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
@@ -172,29 +227,18 @@
 
     var bounds = [];
     nodes.forEach(node => {
-      // Coverage circle
       L.circle([node.latitude, node.longitude], {
         color: '#0f9d9d',
         fillColor: '#0f9d9d',
         fillOpacity: 0.2,
         radius: node.coverage
       }).addTo(map);
-
-      // Marker with popup
       L.marker([node.latitude, node.longitude])
         .addTo(map)
-        .bindPopup(`<strong>${node.name}</strong><br>
-                    Coverage: ${node.coverage} m<br>
-                    Lat: ${node.latitude}<br>
-                    Lon: ${node.longitude}`);
-
+        .bindPopup(`<strong>${node.name}</strong><br>Coverage: ${node.coverage} m<br>Lat: ${node.latitude}<br>Lon: ${node.longitude}`);
       bounds.push([node.latitude, node.longitude]);
     });
-
-    // Adjust map to fit all nodes
-    if(bounds.length) {
-      map.fitBounds(bounds, {padding: [50, 50]});
-    }
+    if(bounds.length) { map.fitBounds(bounds, {padding: [50, 50]}); }
 
     // Form handling
     const form = document.getElementById('signupForm');
@@ -208,16 +252,14 @@
       if(!name || !phone || !address) { alert('Please fill the required fields'); return }
       const subject = encodeURIComponent('Gwabalanda Connect - signup request');
       const body = encodeURIComponent(`Name: ${name}%0APhone: ${phone}%0AAddress: ${address}%0APackage: ${pack}%0ARef: ${ref}`);
-      const mailto = `mailto:sentinelxzw@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailto;
+      window.location.href = `mailto:sentinelxzw@gmail.com?subject=${subject}&body=${body}`;
     });
 
     // WhatsApp button
     document.getElementById('whatsappBtn').addEventListener('click', function(){
       const number = '263777932721';
       const text = encodeURIComponent('Hello — I want to sign up for Gwabalanda Connect. Please help.');
-      const url = `https://wa.me/${number}?text=${text}`;
-      window.open(url, '_blank');
+      window.open(`https://wa.me/${number}?text=${text}`, '_blank');
     });
   </script>
 </body>
