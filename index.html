@@ -46,8 +46,15 @@
     .faq{margin-top:12px}
     .faq-item{margin-bottom:12px}
     .emoji{font-size:18px;vertical-align:middle;margin-right:4px;}
+    
+    /* Form improvements */
+    .form-logo {text-align:center;margin-bottom:12px;}
+    .form-logo img {height:60px; width:auto; border-radius:12px;}
+    form button {flex:1; min-width:120px;}
+    
     @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
     @media (max-width:960px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.brand img{height:48px}.price{font-size:28px}}
+    @media (max-width:600px){.hero{gap:16px;padding:0 12px}.card{padding:16px}}
   </style>
 </head>
 <body>
@@ -167,12 +174,18 @@
 
         <!-- Sign Up Form -->
         <aside>
-          <div class="card">
-            <h3 style="margin-top:0">Quick sign up 📝</h3>
-            <form id="signupForm">
+          <div class="card" id="signup">
+            <div class="form-logo">
+              <img src="logos/gc-logo.png" alt="Gwabalanda Connect logo">
+            </div>
+            <h3 style="margin-top:0;text-align:center">Quick sign up 📝</h3>
+            <form action="https://formsubmit.co/gwabalandaconnect@gmail.com" method="POST" id="signupForm">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              
               <div style="margin-bottom:12px">
                 <label for="name">Full name</label>
-                <input id="name" name="name" required placeholder="Jane Doe">
+                <input id="name" name="name" required placeholder="Mthabisi Dlodlo">
               </div>
               <div style="margin-bottom:12px">
                 <label for="phone">Phone (WhatsApp)</label>
@@ -180,7 +193,7 @@
               </div>
               <div style="margin-bottom:12px">
                 <label for="address">Street address / landmark</label>
-                <input id="address" name="address" required placeholder="House 12, Gwabalanda Main Rd">
+                <input id="address" name="address" required placeholder="5182 Luveve 4, Bulawayo">
               </div>
               <div style="margin-bottom:12px">
                 <label for="package">Package</label>
@@ -189,12 +202,12 @@
                   <option value="premium">Premium — $30/month (higher priority & speed)</option>
                 </select>
               </div>
-              <input type="hidden" id="ref" value="gwabalanda-landing-1">
-              <div style="display:flex;gap:8px">
+              <input type="hidden" name="ref" value="gwabalanda-landing-1">
+              <div style="display:flex;gap:8px;flex-wrap:wrap">
                 <button type="submit" class="btn">Request install</button>
                 <button type="button" id="whatsappBtn" class="btn-ghost">Contact via WhatsApp</button>
               </div>
-              <p class="small" style="margin-top:12px">By submitting you agree to be contacted about installation scheduling. Email: <a href="mailto:sentinelxzw@gmail.com">sentinelxzw@gmail.com</a></p>
+              <p class="small" style="margin-top:12px">By submitting you agree to be contacted about installation scheduling. Email: <a href="mailto:gwabalandaconnect@gmail.com">gwabalandaconnect@gmail.com</a></p>
             </form>
           </div>
         </aside>
@@ -240,21 +253,6 @@
     });
     if(bounds.length) { map.fitBounds(bounds, {padding: [50, 50]}); }
 
-    // Form handling
-    const form = document.getElementById('signupForm');
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const address = document.getElementById('address').value.trim();
-      const pack = document.getElementById('package').value;
-      const ref = document.getElementById('ref').value;
-      if(!name || !phone || !address) { alert('Please fill the required fields'); return }
-      const subject = encodeURIComponent('Gwabalanda Connect - signup request');
-      const body = encodeURIComponent(`Name: ${name}%0APhone: ${phone}%0AAddress: ${address}%0APackage: ${pack}%0ARef: ${ref}`);
-      window.location.href = `mailto:sentinelxzw@gmail.com?subject=${subject}&body=${body}`;
-    });
-
     // WhatsApp button
     document.getElementById('whatsappBtn').addEventListener('click', function(){
       const number = '263777932721';
@@ -264,4 +262,3 @@
   </script>
 </body>
 </html>
-
