@@ -13,7 +13,7 @@
     :root{--brand:#0b6b6b;--accent:#0f9d9d;--muted:#6b7280;--bg:#f7fafc}
     *{box-sizing:border-box}
     html,body{height:100%;margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{background:var(--bg);color:#0f172a;line-height:1.45}
+    body{background:var(--bg);color:#0f172a;line-height:1.45;position:relative}
     .container{max-width:1100px;margin:0 auto;padding:28px}
     header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
     .brand{display:flex;gap:12px;align-items:center}
@@ -51,6 +51,14 @@
     .form-logo {text-align:center;margin-bottom:12px;}
     .form-logo img {height:60px; width:auto; border-radius:12px;}
     form button {flex:1; min-width:120px;}
+
+    /* Countdown & House Counter */
+    .beta-info{margin-top:12px;font-weight:600;color:var(--brand);}
+    .counter{font-size:20px;margin-top:8px;color:var(--accent);font-weight:700;}
+
+    /* WhatsApp floating button */
+    .whatsapp-fixed{
+      position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:14px 18px;border-radius:50px;font-size:18px;box-shadow:0 6px 20px rgba(0,0,0,0.2);text-decoration:none;z-index:999;}
     
     @keyframes fadeIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
     @media (max-width:960px){.hero{grid-template-columns:1fr}.features{grid-template-columns:1fr}.brand img{height:48px}.price{font-size:28px}}
@@ -75,6 +83,13 @@
     <main>
       <section class="hero">
         <div>
+          <!-- Beta countdown -->
+          <div class="card beta-info">
+            Beta Test Launch: <strong>27 January 2026</strong>
+            <div id="countdown" class="counter"></div>
+            Houses Remaining for Beta: <span id="houseCounter" class="counter">100</span>
+          </div>
+
           <div class="card">
             <h1>Affordable uncapped Wi‑Fi for every home in Gwabalanda</h1>
             <p class="lead">Uncapped internet — simple pricing. $20/month with a one‑time $49 installation fee that includes a router. Fast, reliable, community first.</p>
@@ -205,7 +220,6 @@
               <input type="hidden" name="ref" value="gwabalanda-landing-1">
               <div style="display:flex;gap:8px;flex-wrap:wrap">
                 <button type="submit" class="btn">Request install</button>
-                <button type="button" id="whatsappBtn" class="btn-ghost">Contact via WhatsApp</button>
               </div>
               <p class="small" style="margin-top:12px">By submitting you agree to be contacted about installation scheduling. Email: <a href="mailto:gwabalandaconnect@gmail.com">gwabalandaconnect@gmail.com</a></p>
             </form>
@@ -218,6 +232,11 @@
       © Sentinel‑X — Gwabalanda Connect · Affordable Internet for Gwabalanda
     </footer>
   </div>
+
+  <!-- WhatsApp floating button -->
+  <a href="https://wa.me/263777932721?text=Hello — I want to sign up for Gwabalanda Connect. Please help." class="whatsapp-fixed" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i> WhatsApp
+  </a>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script>
@@ -253,11 +272,29 @@
     });
     if(bounds.length) { map.fitBounds(bounds, {padding: [50, 50]}); }
 
-    // WhatsApp button
-    document.getElementById('whatsappBtn').addEventListener('click', function(){
-      const number = '263777932721';
-      const text = encodeURIComponent('Hello — I want to sign up for Gwabalanda Connect. Please help.');
-      window.open(`https://wa.me/${number}?text=${text}`, '_blank');
+    // Countdown to Beta
+    const betaDate = new Date("January 27, 2026 00:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+    setInterval(function(){
+      const now = new Date().getTime();
+      let distance = betaDate - now;
+      if(distance < 0) { countdownEl.innerHTML = "Beta Launched!"; return; }
+      const days = Math.floor(distance/(1000*60*60*24));
+      const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+      const seconds = Math.floor((distance%(1000*60))/1000);
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    },1000);
+
+    // House counter
+    let houseCounter = 100;
+    const houseCounterEl = document.getElementById("houseCounter");
+
+    // Form submit handler to decrement counter
+    const form = document.getElementById('signupForm');
+    form.addEventListener('submit', function(e){
+      houseCounter = Math.max(0, houseCounter-1);
+      houseCounterEl.textContent = houseCounter;
     });
   </script>
 </body>
