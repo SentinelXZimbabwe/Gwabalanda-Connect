@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Gwabalanda Connect — Sentinel‑X</title>
-  <meta name="description" content="Affordable uncapped home Wi‑Fi for Gwabalanda. $20/month. $49 installation with router included. Powered by Sentinel‑X." />
+  <title>Gwabalanda Connect — Sentinel-X</title>
+  <meta name="description" content="Affordable uncapped home Wi-Fi for Gwabalanda. $20/month. $49 installation with router included. Powered by Sentinel-X." />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -52,7 +52,7 @@
     .form-logo img {height:60px; width:auto; border-radius:12px;}
     form button {flex:1; min-width:120px;}
 
-    /* Countdown & House Counter */
+    /* Countdown */
     .beta-info{margin-top:12px;font-weight:600;color:var(--brand);}
     .counter{font-size:20px;margin-top:8px;color:var(--accent);font-weight:700;}
 
@@ -72,7 +72,7 @@
         <img src="logos/gc-logo.png" alt="Gwabalanda Connect logo">
         <div>
           <div style="font-weight:700">Gwabalanda Connect</div>
-          <div class="small">Powered by Sentinel‑X</div>
+          <div class="small">Powered by Sentinel-X</div>
         </div>
       </div>
       <nav>
@@ -87,12 +87,11 @@
           <div class="card beta-info">
             Beta Test Launch: <strong>27 January 2026</strong>
             <div id="countdown" class="counter"></div>
-            Houses Remaining for Beta: <span id="houseCounter" class="counter">100</span>
           </div>
 
           <div class="card">
-            <h1>Affordable uncapped Wi‑Fi for every home in Gwabalanda</h1>
-            <p class="lead">Uncapped internet — simple pricing. $20/month with a one‑time $49 installation fee that includes a router. Fast, reliable, community first.</p>
+            <h1>Affordable uncapped Wi-Fi for every home in Gwabalanda</h1>
+            <p class="lead">Uncapped internet — simple pricing. $20/month with a one-time $49 installation fee that includes a router. Fast, reliable, community first.</p>
             <div class="features">
               <div class="feature">
                 <i class="fa-solid fa-wifi"></i>
@@ -119,7 +118,7 @@
                 <i class="fa-solid fa-graduation-cap"></i>
                 <div>
                   <strong>Education access</strong>
-                  <div class="small">Sentinel‑X Academy portal available to subscribers.</div>
+                  <div class="small">Sentinel-X Academy portal available to subscribers.</div>
                 </div>
               </div>
             </div>
@@ -148,7 +147,7 @@
           <!-- Why Gwabalanda Connect -->
           <div class="section card">
             <h2>Why Gwabalanda Connect? 🤝</h2>
-            <p>We design networks for communities first. Our focus is long‑term reliability, local jobs, and affordable pricing. Sentinel‑X provides the network management backend so the service can scale to other suburbs in Zimbabwe.</p>
+            <p>We design networks for communities first. Our focus is long-term reliability, local jobs, and affordable pricing. Sentinel-X provides the network management backend so the service can scale to other suburbs in Zimbabwe.</p>
           </div>
 
           <!-- Pilot Targets -->
@@ -229,7 +228,7 @@
     </main>
 
     <footer>
-      © Sentinel‑X — Gwabalanda Connect · Affordable Internet for Gwabalanda
+      © Sentinel-X — Gwabalanda Connect · Affordable Internet for Gwabalanda
     </footer>
   </div>
 
@@ -285,18 +284,6 @@
       const seconds = Math.floor((distance%(1000*60))/1000);
       countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
     },1000);
-
-    // House counter
-    let houseCounter = 110;
-    const houseCounterEl = document.getElementById("houseCounter");
-
-    // Form submit handler to decrement counter
-    const form = document.getElementById('signupForm');
-    form.addEventListener('submit', function(e){
-      houseCounter = Math.max(0, houseCounter-1);
-      houseCounterEl.textContent = houseCounter;
-    });
   </script>
 </body>
 </html>
-
